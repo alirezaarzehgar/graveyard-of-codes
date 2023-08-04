@@ -6,7 +6,7 @@ import (
 	"sync/atomic"
 )
 
-const COUNT = 200000
+const COUNT = 2000000
 
 func main() {
 	var sum int32
@@ -17,6 +17,7 @@ func main() {
 		go func() {
 			defer wg.Done()
 			atomic.AddInt32(&sum, 1)
+//			sum += 1
 		}()
 	}
 	wg.Wait()
