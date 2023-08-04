@@ -1,0 +1,14 @@
+services:
+  nats:
+    image: nats:latest
+    ports:
+      - 4222:4222
+
+  hinats:
+    build: .
+    depends_on:
+      - nats
+    links:
+      - nats
+    environment:
+      - NATS_URL=nats://nats:4222
