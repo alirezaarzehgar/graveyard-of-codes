@@ -1,0 +1,18 @@
+services:
+  db:
+    image: mariadb:10.10
+    environment:
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pass
+      - MYSQL_ROOT_PASSWORD=pass
+      - MYSQL_DATABASE=test
+    ports:
+      - 3306:3306
+  
+  app:
+    build: .
+    restart: always
+    depends_on:
+      - db
+    links:
+      - db

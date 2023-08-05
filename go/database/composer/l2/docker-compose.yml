@@ -1,0 +1,22 @@
+services:
+  db:
+    image: mariadb:10.10
+    environment:
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    volumes:
+      - ./dbinit:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+  
+  app:
+    build: .
+    restart: always
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    links:
+      - db

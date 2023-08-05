@@ -1,0 +1,27 @@
+services:
+  db:
+    image: mariadb:10.10
+    environment:
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pass
+      - MYSQL_ROOT_PASSWORD=pass
+      - MYSQL_DATABASE=test
+    ports:
+      - 3306:3306
+    volumes:
+      - ./dbinit:/docker-entrypoint-initdb.d
+      - db:/var/lib/mysql
+  
+  app:
+    build: .
+    restart: always
+    depends_on:
+      - db
+    links:
+      - db
+    ports:
+      - 8000:8000
+
+volumes:
+  db:
+    driver: local

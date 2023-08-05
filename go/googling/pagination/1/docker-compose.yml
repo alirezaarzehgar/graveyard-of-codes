@@ -1,0 +1,30 @@
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+       MYSQL_ROOT_PASSWORD: 'pass'
+       MYSQL_DATABASE: 'db'
+       MYSQL_USER: 'user'
+       MYSQL_PASSWORD: 'pass'
+       MYSQL_ROOT_HOST: '%'
+    ports:
+      - 3306:3306
+    volumes:
+      - db:/var/lib/mysql
+      - ./db:/docker-entrypoint-initdb.d
+
+  app:
+    build: .
+    depends_on:
+      - mysql
+    links:
+      - "mysql"
+    ports:
+      - 8000:8000
+    environment:
+      - MYSQL_URL=mysql:3306
+
+volumes:
+  db:
+    driver: local
