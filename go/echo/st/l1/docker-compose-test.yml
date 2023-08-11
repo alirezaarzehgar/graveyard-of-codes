@@ -1,0 +1,15 @@
+services:
+  # db:
+  #   image: mariadb:10.10
+  #   ports:
+  #     - 3306:3306
+  #   environment:
+  #     - MYSQL_USER=${MYSQL_USER}
+  #     - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+  #     - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+  #     - MYSQL_DATABASE=${MYSQL_DATABASE}
+  #     - DB_HOST=${DB_HOST}
+  app:
+    build:
+      context: app
+      dockerfile: DockerfileTest

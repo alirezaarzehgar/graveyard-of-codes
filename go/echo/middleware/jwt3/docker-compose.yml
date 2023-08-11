@@ -1,0 +1,19 @@
+services:
+  app:
+    build: .
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    links:
+      - db
+    restart: always
+  db:
+    image: mysql:latest
+    environment:
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    ports:
+      - 3306:3306

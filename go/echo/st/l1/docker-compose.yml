@@ -1,0 +1,24 @@
+services:
+  db:
+    env_file:
+      - app/.env
+    image: mariadb:10.10
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - DB_HOST=${DB_HOST}
+  app:
+    env_file: 
+      - app/.env
+    build: app
+    ports:
+      - ${RUNNING_PORT}:${RUNNING_PORT}
+    restart: always
+    depends_on:
+      - db
+    links:
+      - db
