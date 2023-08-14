@@ -1,0 +1,32 @@
+services:
+  kafka:
+    image: landoop/fast-data-dev:latest
+    ports:
+      - 9092:9092
+    environment:
+      - ADV_HOST=kafka
+  
+  wait-for-kafka:
+    image: atkrad/wait4x
+    depends_on:
+      - kafka
+    command: tcp kafka:9092 -t 30s -i 250ms
+  
+  producer:
+    build:
+      context: producer
+      dockerfile: Dockerfile
+    depends_on:
+      wait-for-kafka:
+        condition: service_completed_successfully
+    links:
+      - kafka
+
+  consumer:
+    build:
+      context: consumer
+      dockerfile: Dockerfile
+    depends_on:
+      - producer
+    links:
+      - kafka
