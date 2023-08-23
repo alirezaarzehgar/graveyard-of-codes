@@ -1,0 +1,54 @@
+/*
+Copyright © 2023 NAME HERE <EMAIL ADDRESS>
+*/
+package cmd
+
+import (
+	"context"
+	"log"
+
+	"github.com/rabbitmq/amqp091-go"
+	"github.com/spf13/cobra"
+)
+
+// producerCmd represents the producer command
+var producerCmd = &cobra.Command{
+	Use: "producer",
+	Run: func(cmd *cobra.Command, args []string) {
+		conn, err := amqp091.Dial("amqp://guest:guest@localhost:5672/")
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer conn.Close()
+
+		ch, err := conn.Channel()
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer ch.Close()
+
+		err = ch.ExchangeDeclare("logs", amqp091.ExchangeFanout, true, false, false, false, nil)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		ch.PublishWithContext(context.Background(), "logs", "", false, false, amqp091.Publishing{
+			ContentType: "text/plain",
+			Body:        []byte("a log!"),
+		})
+	},
+}
+
+func init() {
+	rootCmd.AddCommand(producerCmd)
+
+	// Here you will define your flags and configuration settings.
+
+	// Cobra supports Persistent Flags which will work for this command
+	// and all subcommands, e.g.:
+	// producerCmd.PersistentFlags().String("foo", "", "A help for foo")
+
+	// Cobra supports local flags which will only run when this command
+	// is called directly, e.g.:
+	// producerCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+}

@@ -1,0 +1,51 @@
+basePath: /
+consumes:
+    - application/json
+    - 'Produce:'
+    - application/json
+definitions:
+    User:
+        description: User defines the structure for a Full User Record
+        properties:
+            id:
+                format: int64
+                minimum: 1
+                type: integer
+                x-go-name: ID
+            password:
+                type: string
+                x-go-name: Password
+            user:
+                type: string
+                x-go-name: Username
+        required:
+            - user
+            - password
+        type: object
+        x-go-package: swagger
+info:
+    description: Documention for REST API
+    title: for keeping handlers
+    version: 1.0.7
+paths:
+    /login:
+        post:
+            description: Login user to application
+            operationId: LoginUser
+            responses:
+                "200":
+                    $ref: '#/responses/User'
+                "404":
+                    $ref: '#/responses/ErrorMessage'
+responses:
+    ErrorMessage:
+        description: Generic error message returned as an HTTP Status Code
+    User:
+        description: Generic UserResponse message returned as an HTTP Status Code
+        schema:
+            $ref: '#/definitions/User'
+    noContent:
+        description: Generic noContent message returned as an HTTP Status Code
+schemes:
+    - http
+swagger: "2.0"

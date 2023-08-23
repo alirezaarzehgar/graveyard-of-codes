@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option go_package = "./;protoapi";
+
+service Math {
+	rpc Add (NumberArgs) returns (Number);
+	rpc Minus (NumberArgs) returns (Number);
+	rpc Div (NumberArgs) returns (Number);
+	rpc Mul (NumberArgs) returns (Number);
+}
+
+message NumberArgs {
+	float A = 1;
+	float B = 2;
+}
+
+message Number {
+	float Value = 1;
+}
