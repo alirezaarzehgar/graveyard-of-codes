@@ -1,0 +1,6 @@
+services:
+  rabbit:
+    image: rabbitmq:3-management
+    ports:
+      - ${RABBIT_PORT}:${RABBIT_PORT}
+      - ${RABBIT_MGMT_PORT}:${RABBIT_MGMT_PORT}
