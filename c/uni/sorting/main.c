@@ -43,7 +43,7 @@ int main(int argc, char *const *argv)
 	size_t n = 0;
 	void(*sorting_algorithm)(int *, size_t) = bubble_sort;
 
-	while ((ch = getopt(argc, argv, "bi")) != -1) {
+	while ((ch = getopt(argc, argv, "bih")) != -1) {
 		switch (ch) {
 		case 'b':
 			printf("Sort with bubble sort algorithm.\n");
@@ -53,8 +53,9 @@ int main(int argc, char *const *argv)
 			printf("Sort with insertion sort algorithm.\n");
 			sorting_algorithm = insertion_sort;
 			break;
+		case 'h':
 		default:
-			fprintf(stderr, "usage: sorting [bi]");
+			fprintf(stderr, "usage: sorting [bih]\n");
 			return EXIT_FAILURE;
 		}
 	}
