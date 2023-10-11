@@ -18,7 +18,6 @@ void bubble_sort(int *arr, size_t n)
 				arr[j+1] = tmp;
 
 				swapped = true;
-
 			}
 		}
 
@@ -45,8 +44,7 @@ int main(int argc, char *const *argv)
 	void(*sorting_algorithm)(int *, size_t) = bubble_sort;
 
 	while ((ch = getopt(argc, argv, "bi")) != -1) {
-		switch (ch)
-		{
+		switch (ch) {
 		case 'b':
 			printf("Sort with bubble sort algorithm.\n");
 			sorting_algorithm = bubble_sort;
