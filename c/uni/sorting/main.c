@@ -22,7 +22,7 @@ void bubble_sort(int *arr, size_t n)
 		}
 
 		if (!swapped)
-			break;		
+			break;
 	}
 }
 
@@ -59,7 +59,7 @@ int main(int argc, char *const *argv)
 		}
 	}
 	argc -= optind;
-	argv += optind;	
+	argv += optind;
 
 	arr = malloc(sizeof(int) * DEFAULT_ARR_SIZE);
 	if (!arr && errno) {
