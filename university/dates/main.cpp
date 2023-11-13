@@ -61,7 +61,7 @@ protected:
 		int ny = year, nm = month, nd = day;
 
 		setDateType(TYPE_DATE_JALALI);
-		
+
 		ny -= DIFF_YEARS;
 
 		for (int i = 0; i < DIFF_DAYS; i++) {
