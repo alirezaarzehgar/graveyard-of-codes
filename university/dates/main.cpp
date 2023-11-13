@@ -43,7 +43,7 @@ protected:
 
 		for (int i = 0; i < DIFF_DAYS; i++) {
 			nd++;
-			if (nd > monthDays[nm-1]) {
+			if (nd > monthDays[nm - 1]) {
 				nm++;
 				nd = 1;
 			}
@@ -68,7 +68,7 @@ protected:
 			nd--;
 			if (nd == 0) {
 				nm--;
-				nd = monthDays[nm-1];
+				nd = monthDays[nm];
 			}
 			if (nm == 0) {
 				ny--;
