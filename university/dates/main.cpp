@@ -68,11 +68,12 @@ protected:
 			nd--;
 			if (nd == 0) {
 				nm--;
-				nd = monthDays[nm];
+				nd = monthDays[nm - 1];
 			}
 			if (nm == 0) {
 				ny--;
 				nm = MONTHS_COUNT;
+				nd = monthDays[nm - 1];
 			}
 		}
 
