@@ -1,0 +1,8 @@
+module github.com/alirezaarzehgar/romainserver
+
+go 1.21
+
+require (
+	github.com/gorilla/mux v1.8.1
+	github.com/julienschmidt/httprouter v1.3.0
+)
