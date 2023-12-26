@@ -1,0 +1,18 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - CONN_STR=mongodb://user:pass@mongodb
+    ports:
+      - 8000:8000
+    restart: always
+  
+  mongodb:
+    image: mongo:4.4.6
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=pass

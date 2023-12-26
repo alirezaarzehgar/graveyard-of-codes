@@ -1,0 +1,73 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "swagger test",
+        "contact": {},
+        "version": "2.0"
+    },
+    "paths": {
+        "/handler": {
+            "get": {
+                "description": "yooyoy",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "fun"
+                ],
+                "summary": "Just for fun",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/main.HTTPError"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/main.HTTPError"
+                        }
+                    },
+                    "402": {
+                        "description": "Payment Required",
+                        "schema": {
+                            "$ref": "#/definitions/main.HTTPError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/main.HTTPError"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.HTTPError": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

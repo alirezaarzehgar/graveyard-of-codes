@@ -1,0 +1,47 @@
+definitions:
+  main.HTTPError:
+    properties:
+      error:
+        type: string
+      message:
+        type: string
+      status:
+        type: integer
+    type: object
+info:
+  contact: {}
+  title: swagger test
+  version: "2.0"
+paths:
+  /handler:
+    get:
+      consumes:
+      - application/json
+      description: yooyoy
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/main.HTTPError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/main.HTTPError'
+        "402":
+          description: Payment Required
+          schema:
+            $ref: '#/definitions/main.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/main.HTTPError'
+      summary: Just for fun
+      tags:
+      - fun
+swagger: "2.0"

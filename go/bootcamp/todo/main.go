@@ -71,7 +71,7 @@ func loginUser() {
 			}
 			break
 		}
-	}
+	} 
 	fmt.Println("Invalid password!")
 }
 

@@ -1,0 +1,142 @@
+definitions:
+  model.User:
+    properties:
+      password:
+        example: password
+        type: string
+      username:
+        example: user
+        type: string
+    type: object
+info:
+  contact: {}
+  description: simple test for mongodb
+  title: mongo test
+  version: "2.0"
+paths:
+  /user/{name}:
+    delete:
+      consumes:
+      - application/json
+      description: delete user by username
+      parameters:
+      - description: username
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: delete a user
+      tags:
+      - user
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: username
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Get user by username
+      tags:
+      - user
+    patch:
+      consumes:
+      - application/json
+      description: update user by username
+      parameters:
+      - description: username
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: user body
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: update a user
+      tags:
+      - user
+  /user/all:
+    get:
+      consumes:
+      - application/json
+      description: fetch all users from db
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.User'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Get all users
+      tags:
+      - user
+  /user/new:
+    post:
+      consumes:
+      - application/json
+      description: User creation
+      parameters:
+      - description: user body
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Create user to database
+      tags:
+      - user
+swagger: "2.0"
