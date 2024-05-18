@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int bsearch(int *arr, int low, int high, int key)
+int del(int *arr, int low, int high, int key)
 {
 	int mid;
 
@@ -11,19 +11,19 @@ int bsearch(int *arr, int low, int high, int key)
 		if (arr[mid] == key)
 			return mid;
 		else if (key < arr[mid])
-			return bsearch(arr, low, mid-1, key);
+			return del(arr, low, mid-1, key);
 		else
-			return bsearch(arr, mid+1, high, key);
+			return del(arr, mid+1, high, key);
 	}
 	return -1;
 }
 
 int main()
 {
-	int arr[] = {5, 1, 4, 7, 6, 2, 3};
+	int arr[] = {1, 4, 7, 9, 12, 15, 17, 19};
 	int out, key = 4, n = sizeof(arr)/sizeof(arr[0]);
 
-	out = bsearch(arr, 0, n, key);
+	out = del(arr, 0, n, key);
 	if (out == -1) {
 		cout << "key not found" << endl;
 		return -1;
