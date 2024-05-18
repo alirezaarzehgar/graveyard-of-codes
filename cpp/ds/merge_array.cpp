@@ -9,11 +9,9 @@ int merge(int *a, int *b, int n, int m)
 	while (k < m+n) {
 		if (((i < m+n) && a[i] < b[j]) || j == m) {
 			a[k] = a[i];
-			cout << k << "<-a" << i << endl;
 			i++;
 		} else {
 			a[k] = b[j];
-			cout << k << "<-b" << j << endl;
 			j++;
 		}
 		k++;
